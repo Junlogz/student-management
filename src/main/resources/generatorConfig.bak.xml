@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <!-- 配置文件路径 -->
+  <context id="DB2Tables" targetRuntime="MyBatis3">
+
+    <!-- 注释插件 -->
+    <commentGenerator type="CustomGenerator">
+    </commentGenerator>
+    <!-- 分页插件 -->
+    <javaClientGenerator targetPackage="${mapper.package}"
+      targetProject="${target.project}"
+      type="XMLMAPPER">
+      <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
+    <javaModelGenerator targetPackage="${model.package}"
+      targetProject="${target.project}">
+      <property name="enableSubPackages" value="true"/>
+      <property name="trimStrings" value="true"/>
+      <property name="javaExampleTargetPackage" value="${model.package}"/>
+      <property name="javaExampleTargetProject" value="${target.project}"/>
+    </javaModelGenerator>
+
+    <javaTypeResolver type="CustomJavaTypeResolver">
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <jdbcConnection connectionURL="${jdbc.url}"
+      driverClass="${jdbc.driver}"
+      password="${jdbc.password}"
+      userId="${jdbc.username}">
+    </jdbcConnection>
+
+    <plugin type="OverIsMergeablePlugin"/>
+
+    <plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin"/>
+
+    <sqlMapGenerator targetPackage="${xml.package}" targetProject="${xml.target.project}">
+      <property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+
+    <table domainObjectName="CustomerInfoManage" tableName="customer_info_manage">
+      <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
+    </table>
+
+    <table domainObjectName="userStatusManage" tableName="user_status_manage">
+      <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
+    </table>
+
+    <table domainObjectName="UserFileStorage" tableName="user_file_storage">
+      <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
+    </table>
+
+  </context>
+
+  <properties resource="generatorConfig.properties"/>
+</generatorConfiguration>
