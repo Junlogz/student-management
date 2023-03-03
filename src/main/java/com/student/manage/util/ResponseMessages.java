@@ -3,6 +3,7 @@ package com.student.manage.util;
 public interface ResponseMessages {
 
     String SUCCESS_MSG = "成功";
+    String LOGIN_SUCCESS_MSG = "登录成功";
     String TOKEN_WRONG_MSG = "非法TOKEN";
     String REQUEST_ERROR_MSG = "非法请求";
     String INTERNAL_SERVER_ERROR = "服务器内部错误";

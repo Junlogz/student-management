@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.AdminInfoCustomMapper">
+
+    <select id="listAdminInfoPage"
+            parameterType="com.student.manage.params.GetAdminInfoPageParams" resultType="com.student.manage.po.generated.AdminInfo">
+        SELECT
+        ai.id,
+        ai.name,
+        ai.username,
+        ai.password
+        FROM
+        admin_info ai
+        <where>
+            <if test="name != null and name != ''">
+                AND ai.name = #{name}
+            </if>
+        </where>
+    </select>
+
+</mapper>
