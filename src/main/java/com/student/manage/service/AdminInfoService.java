@@ -3,6 +3,7 @@ package com.student.manage.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.student.manage.entity.ResponseEntity;
+import com.student.manage.manage.AdminInfoManage;
 import com.student.manage.mapper.AdminInfoCustomMapper;
 import com.student.manage.mapper.generated.AdminInfoMapper;
 import com.student.manage.params.AddAdminInfoParams;
@@ -33,16 +34,12 @@ public class AdminInfoService {
     private AdminInfoMapper adminInfoMapper;
 
     @Autowired
-    private AdminInfoCustomMapper adminInfoCustomMapper;
+    private AdminInfoManage adminInfoManage;
 
     public ResponseEntity<PageInfoVO<GetAdminInfoPageVO>> getAdminInfoPage(GetAdminInfoPageParams params) {
 
-        GetAdminInfoPageParams getAdminInfoPageParams =new GetAdminInfoPageParams();
-        getAdminInfoPageParams.setName(params.getName());
+        PageInfo<GetAdminInfoPageVO> pageInfo = adminInfoManage.listUserPreAuthorizationPage(params);
 
-        PageInfo<AdminInfo> pageInfo = PageHelper.startPage(params)
-                .doSelectPageInfo(
-                        () -> adminInfoCustomMapper.listAdminInfoPage(getAdminInfoPageParams));
 
         List<GetAdminInfoPageVO> pageVOList = new ArrayList<>();
         for (AdminInfo adminInfo : pageInfo.getList()) {
