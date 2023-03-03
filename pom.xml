@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.9</version>
+        <version>2.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.studentmanagement</groupId>
@@ -47,10 +47,19 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>2.9.2</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.springfox</groupId>-->
+<!--            <artifactId>springfox-swagger-ui</artifactId>-->
+<!--            <version>2.9.2</version>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>1.9.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,8 +99,19 @@
                 <configuration>
                     <verbose>true</verbose>
                     <overwrite>true</overwrite>
-                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+                    <configurationFile>
+                        src/main/resources/generatorConfig.xml
+                    </configurationFile>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
                 <dependencies>
                     <dependency>
                         <groupId>mysql</groupId>
@@ -103,12 +123,8 @@
                         <artifactId>mybatis-generator-core</artifactId>
                         <version>1.3.7</version>
                     </dependency>
-                    <dependency>
-                        <groupId>com.itfsw</groupId>
-                        <artifactId>mybatis-generator-plugin</artifactId>
-                        <version>1.2.17</version>
-                    </dependency>
                 </dependencies>
+
             </plugin>
 
         </plugins>

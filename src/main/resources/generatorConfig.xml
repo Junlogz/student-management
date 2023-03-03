@@ -9,12 +9,15 @@
     <!-- 配置文件路径 -->
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
-        <plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin"/>
-
-        <plugin type="OverIsMergeablePlugin"/>
 
         <!-- 注释插件 -->
-        <commentGenerator type="CustomGenerator">
+        <commentGenerator>
+            <!-- 是否生成注释 true： 否： false: 是 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否去除时间戳 true：是 ： false:否 -->
+            <property name="suppressDate" value="true"/>
+            <!-- 是否添加数据库表中字段的注释 true：是 ： false:否，只有当suppressAllComments 为 false 时才能生效 -->
+            <property name="addRemarkComments" value="true"/>
         </commentGenerator>
 
         <jdbcConnection connectionURL="${jdbc.url}"
@@ -23,7 +26,7 @@
                 userId="${jdbc.username}">
         </jdbcConnection>
 
-        <javaTypeResolver type="CustomJavaTypeResolver">
+        <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
@@ -56,95 +59,28 @@
         <!--<columnOverride column="external_sources" jdbcType="VARCHAR"/>-->
         <!--</table>-->
 
-                <table domainObjectName="AdminInfo" tableName="admin_info">
-                <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
-                </table>
+<!--                <table domainObjectName="AdminInfo" tableName="admin_info">-->
+<!--                <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
+<!--                </table>-->
+        <table domainObjectName="CourseInfo" tableName="course_info">
+            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
+        </table>
+        <table domainObjectName="RewardsPunishmentInfo" tableName="rewards_punishment_info">
+            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
+        </table>
+        <table domainObjectName="GradeInfo" tableName="grade_info">
+            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
+        </table>
+        <table domainObjectName="StudentInfo" tableName="student_info">
+            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
+        </table>
+        <table domainObjectName="TeacherInfo" tableName="teacher_info">
+            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
+        </table>
 
-        <!--<table domainObjectName="UserFileStorage" tableName="user_file_storage">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
 
 
-        <!--<table domainObjectName="OpenAccountDataRecord" tableName="open_account_data_record">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
 
-        <!--<table domainObjectName="UserStatusManage" tableName="user_status_manage">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerAccountInfo" tableName="customer_account_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="UserPopRecord" tableName="user_pop_record">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="UserThirdpartyDingDing" tableName="user_thirdparty_dingding">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="UserTextInfo" tableName="user_text_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="content" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerMarginInfo" tableName="customer_margin_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerHkWitnessInfo" tableName="customer_hk_witness_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerHkTaxInfo" tableName="customer_hk_tax_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustOpenEntry" tableName="cust_open_entry">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustHkUpdateConfirm" tableName="cust_hk_update_confirm">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerRiskDisclosure" tableName="customer_risk_disclosure">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="open_account_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="GuestRegisterInfo" tableName="guest_register_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="GuestOpenAccountData" tableName="guest_open_account_data">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="open_account_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--    <table domainObjectName="AsyncTaskManage" tableName="async_task_manage">-->
-        <!--      <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--    </table>-->
-
-        <!--        <table domainObjectName="UserInfo" tableName="user_info">-->
-        <!--        <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--<table domainObjectName="CustomerIdentifyInfo" tableName="customer_identify_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--        <table domainObjectName="CustHkIdInfo" tableName="cust_hk_id_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--            <ignoreColumn column="identify_code_encrypt"/>-->
-        <!--            <columnOverride column="passport_head_img" jdbcType="VARCHAR"/>-->
-        <!--        </table>-->
-
-        <!--<table domainObjectName="CustSuspectedInfo" tableName="cust_suspected_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
 
         <!--<table domainObjectName="CustomerExtInfoSnapshot" tableName="customer_ext_info_snapshot">
         <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
@@ -468,8 +404,8 @@
 <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
 <!--        </table>-->
 
-        <table domainObjectName="UserUpdateRecordExport" tableName="user_update_record_export">
-            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
-        </table>
+<!--        <table domainObjectName="UserUpdateRecordExport" tableName="user_update_record_export">-->
+<!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
+<!--        </table>-->
     </context>
 </generatorConfiguration>
