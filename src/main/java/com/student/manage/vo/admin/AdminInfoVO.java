@@ -1,4 +1,4 @@
-package com.student.manage.vo;
+package com.student.manage.vo.admin;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

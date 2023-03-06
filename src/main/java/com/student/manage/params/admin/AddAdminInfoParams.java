@@ -1,30 +1,24 @@
-package com.student.manage.vo;
+package com.student.manage.params.admin;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-@ApiModel(value = "GetAdminInfoPageVO", description = "管理员分页信息返回")
-public class GetAdminInfoPageVO {
+import javax.validation.constraints.NotEmpty;
 
-    @ApiModelProperty(value = "id", example = "1")
-    private Integer id;
+@ApiModel(value = "AddAdminInfoParams", description = "添加管理员信息入参")
+public class AddAdminInfoParams {
 
-    @ApiModelProperty(value = "姓名", example = "张三")
+    @ApiModelProperty(value = "姓名", example = "张三", required = true)
+    @NotEmpty(message = "姓名不能为空")
     private String name;
 
-    @ApiModelProperty(value = "username", example = "liSi")
+    @ApiModelProperty(value = "username", example = "liSi", required = true)
+    @NotEmpty(message = "用户名不能为空")
     private String username;
 
-    @ApiModelProperty(value = "password", example = "zhangSan")
+    @ApiModelProperty(value = "password", example = "zhangSan", required = true)
+    @NotEmpty(message = "密码不能为空")
     private String password;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

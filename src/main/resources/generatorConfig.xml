@@ -10,6 +10,7 @@
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
 
+
         <!-- 注释插件 -->
         <commentGenerator>
             <!-- 是否生成注释 true： 否： false: 是 -->
@@ -21,9 +22,9 @@
         </commentGenerator>
 
         <jdbcConnection connectionURL="${jdbc.url}"
-                driverClass="${jdbc.driver}"
-                password="${jdbc.password}"
-                userId="${jdbc.username}">
+                        driverClass="${jdbc.driver}"
+                        password="${jdbc.password}"
+                        userId="${jdbc.username}">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -31,7 +32,7 @@
         </javaTypeResolver>
 
         <javaModelGenerator targetPackage="${model.package}"
-                targetProject="${target.project}">
+                            targetProject="${target.project}">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
             <property name="javaExampleTargetPackage" value="${model.package}"/>
@@ -44,24 +45,14 @@
 
         <!-- 分页插件 -->
         <javaClientGenerator targetPackage="${mapper.package}"
-                targetProject="${target.project}"
-                type="XMLMAPPER">
+                             targetProject="${target.project}"
+                             type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <!--<table domainObjectName="CustomerBlacklistInfo" tableName="customer_blacklist_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="aliases" jdbcType="VARCHAR"/>-->
-        <!--<columnOverride column="locations" jdbcType="VARCHAR"/>-->
-        <!--<columnOverride column="companies" jdbcType="VARCHAR"/>-->
-        <!--<columnOverride column="linked_to" jdbcType="VARCHAR"/>-->
-        <!--<columnOverride column="further_information" jdbcType="VARCHAR"/>-->
-        <!--<columnOverride column="external_sources" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-<!--                <table domainObjectName="AdminInfo" tableName="admin_info">-->
-<!--                <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-<!--                </table>-->
+        <table domainObjectName="AdminInfo" tableName="admin_info">
+            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
+        </table>
         <table domainObjectName="CourseInfo" tableName="course_info">
             <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
         </table>
@@ -78,334 +69,5 @@
             <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
         </table>
 
-
-
-
-
-        <!--<table domainObjectName="CustomerExtInfoSnapshot" tableName="customer_ext_info_snapshot">
-        <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
-        <columnOverride column="cust_ext_info_data" jdbcType="VARCHAR"/>
-        </table>-->
-
-        <!--<table domainObjectName="CustomerRiskInfoSnapshot" tableName="customer_risk_info_snapshot">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="year_income_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="net_assets_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="invest_budget_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="invest_target_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="stock_exp_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="future_option_exp_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="cust_risk_info_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustHkIdInfoSnapshot" tableName="cust_hk_id_info_snapshot">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="cust_hk_id_info_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerIdentifyInfoSnapshot"-->
-        <!--tableName="customer_identify_info_snapshot">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="cust_identify_info_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-        <!--<table domainObjectName="CustomerExtInfoSnapshot" tableName="customer_ext_info_snapshot">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="cust_ext_info_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerRiskInfoSnapshot" tableName="customer_risk_info_snapshot">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="year_income_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="net_assets_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="invest_budget_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="invest_target_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="stock_exp_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="future_option_exp_code" javaType="java.lang.Integer"/>-->
-        <!--<columnOverride column="cust_risk_info_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustHkIdInfoSnapshot" tableName="cust_hk_id_info_snapshot">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="cust_hk_id_info_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerIdentifyInfoSnapshot"-->
-        <!--tableName="customer_identify_info_snapshot">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="cust_identify_info_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="GuestRegisterInfo" tableName="guest_register_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--        <table domainObjectName="UserLoginQuotesKickWhitelist" tableName="user_login_quotes_kick_whitelist">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--<table domainObjectName="OrgCompanyInfoLog" tableName="org_company_info_log">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="RelevanceInfoLog" tableName="relevance_info_log">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="content" javaType="java.lang.String" jdbcType="VARCHAR" />-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="FlowTaskInfo" tableName="flow_task_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="deal_content" javaType="java.lang.String" jdbcType="VARCHAR" />-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerChinaInfo" tableName="customer_china_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="bcan_address" javaType="java.lang.String" jdbcType="VARCHAR" />-->
-        <!--<columnOverride column="risk_address" javaType="java.lang.String" jdbcType="VARCHAR" />-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerBondPromise" tableName="customer_bond_promise">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="IdentifyNumberRecord" tableName="identify_number_record">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="RiskAssessSubject" tableName="risk_assess_subject">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="subject_detailed" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="RiskAssessRecord" tableName="risk_assess_record">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="answer_detailed" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerMajorInfo" tableName="customer_major_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="risk_address" javaType="java.lang.String" jdbcType="VARCHAR" />-->
-        <!--<columnOverride column="declare_address" javaType="java.lang.String" jdbcType="VARCHAR" />-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerFlowInfo" tableName="customer_flow_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="apply_remark" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="AuthRoleInfo" tableName="auth_role_info">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="apply_remark" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-        <!--<table domainObjectName="UserThirdPartyApplet" tableName="user_thirdparty_applet">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-        <!--<table domainObjectName="UserThirdPartyAlipay" tableName="user_thirdparty_alipay">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="GraySwitchRecord" tableName="gray_switch_record">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="GrayInfoRecord" tableName="gray_info_record">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="CustomerIdInfoSourceData" tableName="customer_id_info_source_data">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="customer_id_info_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-
-        <!--<table domainObjectName="TradingChannelCust" tableName="trading_channel_cust">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--</table>-->
-
-        <!--<table domainObjectName="TradingChannelLog" tableName="trading_channel_log">-->
-        <!--<generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--<columnOverride column="log_data" jdbcType="VARCHAR"/>-->
-        <!--</table>-->
-
-        <!--        <table domainObjectName="UserInfo" tableName="user_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--            <ignoreColumn column="phone_number_encrypt"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="OrgTraderAuthRelation" tableName="org_trader_auth_relation">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="OrgTraderInfo" tableName="org_trader_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="TraderAuthInfo" tableName="trader_auth_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="TraderAuthRelation" tableName="trader_auth_relation">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="IntradayFnancingManage" tableName="intraday_financing_manage">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="AmFundAccount" tableName="am_fund_account">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="FollowInvestmentRelation" tableName="follow_investment_relation">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="SimplifiedTraditionalConfig" tableName="simplified_traditional_config">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerExtInfo" tableName="customer_ext_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--            <columnOverride column="pi_certified_files" jdbcType="VARCHAR"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="UserYingLiNoInfo" tableName="user_ying_li_no_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerRiskInfo" tableName="customer_risk_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--            <columnOverride column="year_income_code" javaType="java.lang.Integer"/>-->
-        <!--            <columnOverride column="net_assets_code" javaType="java.lang.Integer"/>-->
-        <!--            <columnOverride column="invest_budget_code" javaType="java.lang.Integer"/>-->
-        <!--            <columnOverride column="invest_target_code" javaType="java.lang.Integer"/>-->
-        <!--            <columnOverride column="stock_exp_code" javaType="java.lang.Integer"/>-->
-        <!--            <columnOverride column="future_option_exp_code" javaType="java.lang.Integer"/>-->
-        <!--            <columnOverride column="open_permits" jdbcType="VARCHAR"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="UserYingLiNoInfo" tableName="user_ying_li_no_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="CustomerGdcaInfo" tableName="customer_gdca_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="SupplierCallLog" tableName="supplier_call_log">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerHkOpenAccount" tableName="customer_hk_open_account">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerOpenAccount" tableName="customer_open_account">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--            <columnOverride column="approval_opinion" jdbcType="VARCHAR"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerHkOpenAccount" tableName="customer_hk_open_account">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerHkOpenAccount" tableName="customer_hk_open_account">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerOpenAccount" tableName="customer_open_account">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--            <columnOverride column="approval_opinion" jdbcType="VARCHAR"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerGdcaInfo" tableName="customer_gdca_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="UsmartBerichBind" tableName="usmart_berich_bind">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="RateManageInfo" tableName="rate_manage_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="UsmartBerichBind" tableName="usmart_berich_bind">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerOpenAccount" tableName="customer_open_account">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--            <columnOverride column="approval_opinion" jdbcType="VARCHAR"/>-->
-        <!--        </table>-->
-
-
-        <!--<table domainObjectName="CustomerHkOpenAccount" tableName="customer_hk_open_account">
-            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
-        </table>
-
-        <table domainObjectName="CustomerOpenAccount" tableName="customer_open_account">
-            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>
-            <columnOverride column="approval_opinion" jdbcType="VARCHAR"/>
-        </table>-->
-        <!--        <table domainObjectName="UsmartBerichBind" tableName="usmart_berich_bind">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="CustomerOpenAccount" tableName="customer_open_account">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--            <columnOverride column="approval_opinion" jdbcType="VARCHAR"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="CustomerGdcaInfo" tableName="customer_gdca_info">trading_channel_config-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="TradingChannelConfig" tableName="trading_channel_config">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="TradingChannelInfo" tableName="trading_channel_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="TradingChannelChangeRecord" tableName="trading_channel_change_record">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-
-        <!--        <table domainObjectName="TradingChannelConfigRecord" tableName="trading_channel_config_record">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="DerivativesInfoManage" tableName="derivatives_info_manage">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="FollowInvestmentManage" tableName="follow_investment_manage">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="FollowAgreementInfo" tableName="follow_agreement_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerExtInfo" tableName="customer_ext_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerFundAccount" tableName="customer_fund_account">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="FractionalSharesInfoManage" tableName="fractional_shares_info_manage">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="CustomerSpacInfoManage" tableName="customer_spac_info_manage">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-        <!--        <table domainObjectName="OrgCompanyInfo" tableName="org_company_info">-->
-        <!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-        <!--        </table>-->
-<!--        <table domainObjectName="OrgUpdateInfo" tableName="org_update_info">-->
-<!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-<!--            <columnOverride column="update_content" javaType="java.lang.String" jdbcType="VARCHAR"/>-->
-<!--        </table>-->
-
-<!--        <table domainObjectName="CustomerAmlAuditDetail" tableName="customer_aml_audit_detail">-->
-<!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-<!--            <columnOverride column="aml_search_details" jdbcType="VARCHAR"/>-->
-<!--        </table>-->
-
-<!--        <table domainObjectName="CustomerAmlAuditRecord" tableName="customer_aml_audit_record">-->
-<!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-<!--            <columnOverride column="aml_search_details" jdbcType="VARCHAR"/>-->
-<!--        </table>-->
-
-<!--        <table domainObjectName="CustomerAmlManage" tableName="customer_aml_manage">-->
-<!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-<!--        </table>-->
-
-<!--        <table domainObjectName="CustomerConfirmRecord" tableName="customer_confirm_record">-->
-<!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-<!--        </table>-->
-
-<!--        <table domainObjectName="UserUpdateRecordExport" tableName="user_update_record_export">-->
-<!--            <generatedKey column="id" identity="true" sqlStatement="Mysql" type="post"/>-->
-<!--        </table>-->
     </context>
 </generatorConfiguration>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.RewardsPunishmentInfoCustomMapper">
+
+    <select id="getRewardsPunishmentInfoById"
+            parameterType="com.student.manage.params.rp.GetRewardsPunishmentByIdParams" resultType="com.student.manage.vo.rp.RewardsPunishmentInfoVO">
+        SELECT
+        rpi.id,
+        rpi.student_id,
+        si.name AS name,
+        rpi.rewards_punishment,
+        rpi.intro,
+        rpi.date
+        FROM
+        rewards_punishment_info rpi
+        LEFT JOIN student_info si ON rpi.student_id = si.id
+        WHERE rpi.student_id = #{studentId}
+    </select>
+
+</mapper>

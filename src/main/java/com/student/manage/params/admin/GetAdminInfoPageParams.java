@@ -1,10 +1,11 @@
-package com.student.manage.params;
+package com.student.manage.params.admin;
 
+import com.student.manage.params.BasePageParams;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "GetAdminInfoPageParams", description = "管理员分页查询入参")
-public class GetAdminInfoPageParams extends BasePageParams{
+public class GetAdminInfoPageParams extends BasePageParams {
 
     @ApiModelProperty(value = "姓名", example = "张三")
     private String name;

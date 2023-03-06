@@ -3,9 +3,8 @@ package com.student.manage.manage;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.student.manage.mapper.AdminInfoCustomMapper;
-import com.student.manage.params.GetAdminInfoPageParams;
-import com.student.manage.po.generated.AdminInfo;
-import com.student.manage.vo.GetAdminInfoPageVO;
+import com.student.manage.params.admin.GetAdminInfoPageParams;
+import com.student.manage.vo.admin.GetAdminInfoPageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +15,9 @@ public class AdminInfoManage {
     private AdminInfoCustomMapper adminInfoCustomMapper;
 
 
-    public PageInfo<GetAdminInfoPageVO> listUserPreAuthorizationPage(GetAdminInfoPageParams params) {
+    public PageInfo<GetAdminInfoPageVO> listAdminInfoPage(GetAdminInfoPageParams params) {
 
-        GetAdminInfoPageParams getAdminInfoPageParams =new GetAdminInfoPageParams();
+        GetAdminInfoPageParams getAdminInfoPageParams = new GetAdminInfoPageParams();
         getAdminInfoPageParams.setName(params.getName());
 
         return PageHelper.startPage(params)

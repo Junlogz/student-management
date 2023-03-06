@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.StudentInfoCustomMapper">
+
+    <select id="listStudentInfoPage"
+            parameterType="com.student.manage.params.student.GetStudentInfoPageParams" resultType="com.student.manage.po.generated.StudentInfo">
+        SELECT
+        si.id,
+        si.name,
+        si.student_number,
+        si.sex,
+        si.major,
+        si.college,
+        si.age,
+        si.password
+        FROM
+        student_info si
+        <where>
+            <if test="name != null and name != ''">
+                AND si.name = #{name}
+            </if>
+            <if test="studentNumber != null and studentNumber != ''">
+                AND si.student_number = #{studentNumber}
+            </if>
+            <if test="major != null and major != ''">
+                AND si.major = #{major}
+            </if>
+        </where>
+    </select>
+
+</mapper>

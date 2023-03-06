@@ -6,6 +6,7 @@ public interface ResponseCode {
      * 成功
      */
     int SUCCESS_CODE = 0;
+    int FAIL_CODE = 1;
     int CHECK_TRADE_PASSWORD_CODE = 1;
     String SUCCESS_CODE_STR = "0";
     /**

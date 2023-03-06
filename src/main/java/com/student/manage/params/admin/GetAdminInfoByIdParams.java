@@ -1,15 +1,20 @@
-package com.student.manage.params;
+package com.student.manage.params.admin;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-@ApiModel(value = "DeleteAdminInfoByIdParams", description = "管理员信息删除入参")
-public class DeleteAdminInfoByIdParams {
+/**
+ * @author: JunLog
+ * @Description: *
+ * Date: 2023/3/3 21:29
+ */
+@ApiModel(value = "GetAdminInfoByIdParams", description = "管理员id查询入参")
+public class GetAdminInfoByIdParams {
 
     @ApiModelProperty(value = "id", example = "1", required = true)
-    @NotEmpty(message = "id不能为空")
     private Integer id;
 
     public Integer getId() {
@@ -19,4 +24,5 @@ public class DeleteAdminInfoByIdParams {
     public void setId(Integer id) {
         this.id = id;
     }
+
 }

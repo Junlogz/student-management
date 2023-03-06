@@ -1,6 +1,21 @@
 package com.student.manage.controller;
 
 
+import com.student.manage.entity.ResponseEntity;
+import com.student.manage.params.admin.GetAdminInfoByIdParams;
+import com.student.manage.params.rp.GetRewardsPunishmentByIdParams;
+import com.student.manage.service.RewardsPunishmentInfoService;
+import com.student.manage.util.ResponseCode;
+import com.student.manage.util.ResponseMessages;
+import com.student.manage.vo.admin.AdminInfoVO;
+import com.student.manage.vo.rp.RewardsPunishmentInfoVO;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -16,5 +31,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/rewards-punishment-info")
 public class RewardsPunishmentInfoController {
+
+    @Autowired
+    private RewardsPunishmentInfoService punishmentInfoService;
+
+    @ApiOperation(value = "奖惩信息-根据学生id查询", code = ResponseCode.SUCCESS_CODE)
+    @ApiResponses({
+            @ApiResponse(code = ResponseCode.SUCCESS_CODE, message = ResponseMessages.SUCCESS_MSG, response = ResponseEntity.class),
+            @ApiResponse(code = ResponseCode.INTERNAL_SERVER_ERROR, message = ResponseMessages.INTERNAL_SERVER_ERROR),
+            @ApiResponse(code = ResponseCode.REQUEST_ERROR_CODE, message = ResponseMessages.REQUEST_ERROR_MSG),
+    })
+    @PostMapping(value = "/get-rewards-punishment-info-by-id/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RewardsPunishmentInfoVO> getRewardsPunishmentInfoById(@RequestBody GetRewardsPunishmentByIdParams params) {
+        return punishmentInfoService.getRewardsPunishmentInfoById(params);
+    }
 
 }

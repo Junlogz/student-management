@@ -1,30 +1,24 @@
 package com.student.manage.service;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.student.manage.entity.ResponseEntity;
 import com.student.manage.manage.AdminInfoManage;
-import com.student.manage.mapper.AdminInfoCustomMapper;
 import com.student.manage.mapper.generated.AdminInfoMapper;
-import com.student.manage.params.AddAdminInfoParams;
-import com.student.manage.params.DeleteAdminInfoByIdParams;
-import com.student.manage.params.GetAdminInfoPageParams;
-import com.student.manage.params.LoginAdminInfoParams;
+import com.student.manage.params.admin.*;
 import com.student.manage.po.generated.AdminInfo;
 import com.student.manage.po.generated.AdminInfoExample;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.util.ResponseMessages;
-import com.student.manage.util.UserResponseCodes;
-import com.student.manage.vo.GetAdminInfoPageVO;
-import com.student.manage.vo.PageInfoVO;
+import com.student.manage.vo.LoginInfoVO;
+import com.student.manage.vo.admin.AdminInfoVO;
+import com.student.manage.vo.admin.GetAdminInfoPageVO;
+import com.student.manage.vo.admin.PageInfoVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -38,20 +32,10 @@ public class AdminInfoService {
 
     public ResponseEntity<PageInfoVO<GetAdminInfoPageVO>> getAdminInfoPage(GetAdminInfoPageParams params) {
 
-        PageInfo<GetAdminInfoPageVO> pageInfo = adminInfoManage.listUserPreAuthorizationPage(params);
+        PageInfo<GetAdminInfoPageVO> pageInfo = adminInfoManage.listAdminInfoPage(params);
 
-
-        List<GetAdminInfoPageVO> pageVOList = new ArrayList<>();
-        for (AdminInfo adminInfo : pageInfo.getList()) {
-            GetAdminInfoPageVO pageVO = new GetAdminInfoPageVO();
-            BeanUtils.copyProperties(adminInfo, pageVO);
-            pageVOList.add(pageVO);
-        }
-
-        return ResponseEntity.ok(new PageInfoVO(pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getTotal(), pageVOList));
+        return ResponseEntity.ok(new PageInfoVO(pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getTotal(), pageInfo.getList()));
     }
-
-
 
     public ResponseEntity addAdminInfo(AddAdminInfoParams params) {
         try {
@@ -59,21 +43,25 @@ public class AdminInfoService {
             BeanUtils.copyProperties(params, adminInfo);
             adminInfoMapper.insertSelective(adminInfo);
         } catch (DuplicateKeyException e){
-            return ResponseEntity.error(UserResponseCodes.FAIL_CODE, "The Information Already Exists");
+            return ResponseEntity.error(ResponseCode.FAIL_CODE, "The Information Already Exists");
         }
         return ResponseEntity.ok();
     }
 
-    public ResponseEntity loginAdminInfo(LoginAdminInfoParams params) {
+    public ResponseEntity<LoginInfoVO> loginAdminInfo(LoginAdminInfoParams params) {
         AdminInfoExample example = new AdminInfoExample();
         example.createCriteria()
                 .andUsernameEqualTo(params.getUsername())
                 .andPasswordEqualTo(params.getPassword());
         List<AdminInfo> adminInfos = adminInfoMapper.selectByExample(example);
+
         if (!CollectionUtils.isEmpty(adminInfos)) {
-            return ResponseEntity.ok(ResponseMessages.LOGIN_SUCCESS_MSG);
+            LoginInfoVO loginInfoVO = new LoginInfoVO();
+            loginInfoVO.setId(adminInfos.get(0).getId());
+            loginInfoVO.setName(adminInfos.get(0).getName());
+            return ResponseEntity.ok(loginInfoVO);
         } else {
-            return ResponseEntity.error(UserResponseCodes.FAIL_CODE, "账号或密码错误");
+            return ResponseEntity.error(ResponseCode.FAIL_CODE, "账号或密码错误");
         }
     }
 
@@ -84,8 +72,15 @@ public class AdminInfoService {
         if (result >= 1) {
             return ResponseEntity.ok();
         } else {
-            return ResponseEntity.error(UserResponseCodes.FAIL_CODE, "删除失败(不存在该id)");
+            return ResponseEntity.error(ResponseCode.FAIL_CODE, "删除失败(不存在该id)");
         }
+    }
+
+    public ResponseEntity<AdminInfoVO> getAdminInfoById(GetAdminInfoByIdParams params) {
+        AdminInfo adminInfo = adminInfoMapper.selectByPrimaryKey(params.getId());
+        AdminInfoVO adminInfoVO = new AdminInfoVO();
+        BeanUtils.copyProperties(adminInfo, adminInfoVO);
+        return ResponseEntity.ok(adminInfoVO);
     }
 
 }

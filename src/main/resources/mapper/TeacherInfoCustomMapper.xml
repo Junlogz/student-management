@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.TeacherInfoCustomMapper">
+
+    <select id="listTeacherInfoPage"
+            parameterType="com.student.manage.params.teacher.GetTeacherInfoPageParams" resultType="com.student.manage.po.generated.TeacherInfo">
+        SELECT
+        ti.id,
+        ti.name,
+        ti.teacher_number,
+        ti.sex,
+        ti.age,
+        ti.password,
+        ti.prof,
+        ti.depart
+        FROM
+        teacher_info ti
+        <where>
+            <if test="name != null and name != ''">
+                AND ti.name = #{name}
+            </if>
+            <if test="teacherNumber != null and teacherNumber != ''">
+                AND ti.teacher_number = #{teacherNumber}
+            </if>
+            <if test="depart != null and depart != ''">
+                AND ti.depart = #{depart}
+            </if>
+        </where>
+    </select>
+
+</mapper>

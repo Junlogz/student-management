@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.CourseInfoCustomMapper">
+
+    <select id="listCourseInfoPage"
+            parameterType="com.student.manage.params.course.GetCourseInfoPageParams" resultType="com.student.manage.po.generated.CourseInfo">
+        SELECT
+        ci.id,
+        ci.course_number,
+        ci.course_name,
+        ci.intro,
+        ci.type,
+        ci.college,
+        ci.major
+        FROM
+        course_info ci
+        <where>
+            <if test="courseNumber != null and courseNumber != ''">
+                AND ci.course_number = #{courseNumber}
+            </if>
+            <if test="courseName != null and courseName != ''">
+                AND ci.course_name = #{courseName}
+            </if>
+        </where>
+    </select>
+
+</mapper>

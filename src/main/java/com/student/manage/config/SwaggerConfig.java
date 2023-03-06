@@ -35,7 +35,7 @@ public class SwaggerConfig {
     }
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("student-management RESTful APIs")
+                .title("student-management APIs")
                 .description("swagger-bootstrap-ui")
                 .version("1.0")
                 .build();

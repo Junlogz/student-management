@@ -1,4 +1,4 @@
-package com.student.manage.vo;
+package com.student.manage.vo.admin;
 
 import com.github.pagehelper.PageInfo;
 import com.student.manage.util.JsonUtils;

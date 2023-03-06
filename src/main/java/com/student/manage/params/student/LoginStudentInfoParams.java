@@ -1,4 +1,4 @@
-package com.student.manage.params;
+package com.student.manage.params.student;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -6,22 +6,22 @@ import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.NotEmpty;
 
 @ApiModel(value = "LoginAdminInfoParams", description = "管理员登录入参")
-public class LoginAdminInfoParams {
+public class LoginStudentInfoParams {
 
-    @ApiModelProperty(value = "username", example = "liSi", required = true)
-    @NotEmpty(message = "用户名不能为空")
-    private String username;
+    @ApiModelProperty(value = "学号", example = "2019106040334", required = true)
+    @NotEmpty(message = "学号不能为空")
+    private String studentNumber;
 
     @ApiModelProperty(value = "password", example = "zhangSan", required = true)
     @NotEmpty(message = "密码不能为空")
     private String password;
 
-    public String getUsername() {
-        return username;
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
     public String getPassword() {
