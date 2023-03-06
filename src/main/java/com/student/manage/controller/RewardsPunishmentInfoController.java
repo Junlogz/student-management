@@ -2,13 +2,12 @@ package com.student.manage.controller;
 
 
 import com.student.manage.entity.ResponseEntity;
-import com.student.manage.params.admin.GetAdminInfoByIdParams;
 import com.student.manage.params.rp.GetRewardsPunishmentByIdParams;
 import com.student.manage.service.RewardsPunishmentInfoService;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.util.ResponseMessages;
-import com.student.manage.vo.admin.AdminInfoVO;
 import com.student.manage.vo.rp.RewardsPunishmentInfoVO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -17,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -30,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/rewards-punishment-info")
+@Api(tags = "奖惩信息业务")
 public class RewardsPunishmentInfoController {
 
     @Autowired
