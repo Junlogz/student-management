@@ -18,4 +18,23 @@
         WHERE rpi.student_id = #{studentId}
     </select>
 
+    <select id="listRewardsPunishmentInfoPage"
+            parameterType="com.student.manage.params.rp.GetRewardsPunishmentPageParams" resultType="com.student.manage.vo.rp.RewardsPunishmentInfoVO">
+        SELECT
+        rpi.id,
+        rpi.student_id,
+        si.name AS name,
+        rpi.rewards_punishment,
+        rpi.intro,
+        rpi.date
+        FROM
+        rewards_punishment_info rpi
+        LEFT JOIN student_info si ON rpi.student_id = si.id
+        <where>
+            <if test="name != null and name != ''">
+                AND si.name = #{name}
+            </if>
+        </where>
+    </select>
+
 </mapper>

@@ -2,10 +2,16 @@ package com.student.manage.controller;
 
 
 import com.student.manage.entity.ResponseEntity;
+import com.student.manage.params.admin.GetAdminInfoPageParams;
+import com.student.manage.params.rp.DeleteRewardsPunishmentParams;
 import com.student.manage.params.rp.GetRewardsPunishmentByIdParams;
+import com.student.manage.params.rp.GetRewardsPunishmentPageParams;
+import com.student.manage.params.rp.UpdateRewardsPunishmentParams;
 import com.student.manage.service.RewardsPunishmentInfoService;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.util.ResponseMessages;
+import com.student.manage.vo.admin.GetAdminInfoPageVO;
+import com.student.manage.vo.admin.PageInfoVO;
 import com.student.manage.vo.rp.RewardsPunishmentInfoVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -45,5 +51,30 @@ public class RewardsPunishmentInfoController {
     public ResponseEntity<RewardsPunishmentInfoVO> getRewardsPunishmentInfoById(@RequestBody GetRewardsPunishmentByIdParams params) {
         return punishmentInfoService.getRewardsPunishmentInfoById(params);
     }
+
+    @ApiOperation(value = "奖惩信息-分页查询", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/get-rewards-punishment-info-page/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PageInfoVO<RewardsPunishmentInfoVO>> getRewardsPunishmentInfoPage(@RequestBody GetRewardsPunishmentPageParams params) {
+        return punishmentInfoService.getRewardsPunishmentInfoPage(params);
+    }
+
+    @ApiOperation(value = "奖惩信息-修改", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/update-rewards-punishment-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateRewardsPunishmentInfo(@RequestBody UpdateRewardsPunishmentParams params) {
+        return punishmentInfoService.updateRewardsPunishmentInfo(params);
+    }
+
+    @ApiOperation(value = "奖惩信息-删除", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/delete-rewards-punishment-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> deleteRewardsPunishmentInfo(@RequestBody DeleteRewardsPunishmentParams params) {
+        return punishmentInfoService.deleteRewardsPunishmentInfo(params);
+    }
+
+
+
+
 
 }
