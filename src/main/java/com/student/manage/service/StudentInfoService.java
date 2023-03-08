@@ -5,13 +5,10 @@ import com.student.manage.entity.ResponseEntity;
 import com.student.manage.manage.StudentInfoManage;
 import com.student.manage.mapper.generated.StudentInfoMapper;
 import com.student.manage.params.student.*;
-import com.student.manage.po.generated.AdminInfo;
 import com.student.manage.po.generated.StudentInfo;
 import com.student.manage.po.generated.StudentInfoExample;
 import com.student.manage.util.ResponseCode;
-import com.student.manage.util.ResponseMessages;
 import com.student.manage.vo.LoginInfoVO;
-import com.student.manage.vo.admin.AdminInfoVO;
 import com.student.manage.vo.admin.PageInfoVO;
 import com.student.manage.vo.student.GetStudentInfoPageVO;
 import com.student.manage.vo.student.StudentInfoVO;
@@ -90,6 +87,16 @@ public class StudentInfoService {
         StudentInfoVO studentInfoVO = new StudentInfoVO();
         BeanUtils.copyProperties(studentInfo, studentInfoVO);
         return ResponseEntity.ok(studentInfoVO);
+    }
+
+    public ResponseEntity updateStudentInfo(UpdateStudentInfoParams params) {
+        StudentInfoExample example = new StudentInfoExample();
+        example.createCriteria().andIdEqualTo(params.getId());
+
+        StudentInfo studentInfo = new StudentInfo();
+        BeanUtils.copyProperties(params,studentInfo);
+        studentInfoMapper.updateByExampleSelective(studentInfo, example);
+        return ResponseEntity.ok();
     }
 
 }

@@ -2,15 +2,10 @@ package com.student.manage.controller;
 
 
 import com.student.manage.entity.ResponseEntity;
-import com.student.manage.params.admin.GetAdminInfoPageParams;
-import com.student.manage.params.rp.DeleteRewardsPunishmentParams;
-import com.student.manage.params.rp.GetRewardsPunishmentByIdParams;
-import com.student.manage.params.rp.GetRewardsPunishmentPageParams;
-import com.student.manage.params.rp.UpdateRewardsPunishmentParams;
+import com.student.manage.params.rp.*;
 import com.student.manage.service.RewardsPunishmentInfoService;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.util.ResponseMessages;
-import com.student.manage.vo.admin.GetAdminInfoPageVO;
 import com.student.manage.vo.admin.PageInfoVO;
 import com.student.manage.vo.rp.RewardsPunishmentInfoVO;
 import io.swagger.annotations.Api;
@@ -71,6 +66,13 @@ public class RewardsPunishmentInfoController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteRewardsPunishmentInfo(@RequestBody DeleteRewardsPunishmentParams params) {
         return punishmentInfoService.deleteRewardsPunishmentInfo(params);
+    }
+
+    @ApiOperation(value = "奖惩信息-添加", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/add-rewards-punishment-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> addRewardsPunishmentInfo(@RequestBody AddRewardsPunishmentParams params) {
+        return punishmentInfoService.addRewardsPunishmentInfo(params);
     }
 
 

@@ -20,7 +20,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -53,6 +52,14 @@ public class TeacherInfoController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addTeacherInfo(@RequestBody @Validated AddTeacherInfoParams params) {
         return teacherInfoService.addTeacherInfo(params);
+    }
+
+    @ApiOperation(value = "教师信息-修改", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/update-teacher-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateTeacherInfo(@RequestBody UpdateTeacherInfoParams params) {
+//        return teacherInfoService.updateTeacherInfo(params);
+        return ResponseEntity.ok();
     }
 
     @ApiOperation(value = "教师登录", code = ResponseCode.SUCCESS_CODE)

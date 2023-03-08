@@ -7,7 +7,6 @@ import com.student.manage.service.StudentInfoService;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.util.ResponseMessages;
 import com.student.manage.vo.LoginInfoVO;
-import com.student.manage.vo.admin.AdminInfoVO;
 import com.student.manage.vo.admin.PageInfoVO;
 import com.student.manage.vo.student.GetStudentInfoPageVO;
 import com.student.manage.vo.student.StudentInfoVO;
@@ -21,7 +20,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -81,6 +79,13 @@ public class StudentInfoController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteStudentInfoById(@RequestBody @Validated DeleteStudentInfoByIdParams params) {
         return studentInfoService.deleteStudentInfoById(params);
+    }
+
+    @ApiOperation(value = "学生信息-修改", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/update-student-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateStudentInfo(@RequestBody UpdateStudentInfoParams params) {
+        return studentInfoService.updateStudentInfo(params);
     }
 
     @ApiOperation(value = "学生信息-根据id查询", code = ResponseCode.SUCCESS_CODE)

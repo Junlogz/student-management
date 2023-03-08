@@ -5,20 +5,21 @@ import com.student.manage.entity.ResponseEntity;
 import com.student.manage.manage.RewardsPunishmentInfoManage;
 import com.student.manage.mapper.RewardsPunishmentInfoCustomMapper;
 import com.student.manage.mapper.generated.RewardsPunishmentInfoMapper;
-import com.student.manage.params.course.GetCourseInfoPageParams;
-import com.student.manage.params.rp.DeleteRewardsPunishmentParams;
-import com.student.manage.params.rp.GetRewardsPunishmentByIdParams;
-import com.student.manage.params.rp.GetRewardsPunishmentPageParams;
-import com.student.manage.params.rp.UpdateRewardsPunishmentParams;
+import com.student.manage.mapper.generated.StudentInfoMapper;
+import com.student.manage.params.rp.*;
 import com.student.manage.po.generated.RewardsPunishmentInfo;
 import com.student.manage.po.generated.RewardsPunishmentInfoExample;
+import com.student.manage.po.generated.StudentInfo;
+import com.student.manage.po.generated.StudentInfoExample;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.vo.admin.PageInfoVO;
-import com.student.manage.vo.course.GetCourseInfoPageVO;
 import com.student.manage.vo.rp.RewardsPunishmentInfoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
+
+import java.util.List;
 
 /**
  * @author: JunLog
@@ -33,6 +34,9 @@ public class RewardsPunishmentInfoService {
 
     @Autowired
     private RewardsPunishmentInfoMapper mapper;
+
+    @Autowired
+    private StudentInfoMapper studentInfoMapper;
 
     @Autowired
     private RewardsPunishmentInfoManage rewardsPunishmentInfoManage;
@@ -57,6 +61,7 @@ public class RewardsPunishmentInfoService {
         RewardsPunishmentInfo rewardsPunishmentInfo = new RewardsPunishmentInfo();
         rewardsPunishmentInfo.setRewardsPunishment(params.getRewardsPunishment());
         rewardsPunishmentInfo.setIntro(params.getIntro());
+        rewardsPunishmentInfo.setDate(params.getDate());
 
         RewardsPunishmentInfoExample example = new RewardsPunishmentInfoExample();
         example.createCriteria().andIdEqualTo(params.getId());
@@ -75,6 +80,23 @@ public class RewardsPunishmentInfoService {
             return ResponseEntity.ok();
         } else {
             return ResponseEntity.error(ResponseCode.FAIL_CODE, "删除失败(不存在该id或其他问题)");
+        }
+    }
+
+    public ResponseEntity addRewardsPunishmentInfo(AddRewardsPunishmentParams params) {
+        StudentInfoExample studentInfoExample = new StudentInfoExample();
+        studentInfoExample.createCriteria().andNameEqualTo(params.getName());
+        List<StudentInfo> studentInfos = studentInfoMapper.selectByExample(studentInfoExample);
+        if (!CollectionUtils.isEmpty(studentInfos)) {
+            RewardsPunishmentInfo rewardsPunishmentInfo = new RewardsPunishmentInfo();
+            rewardsPunishmentInfo.setStudentId(studentInfos.get(0).getId());
+            rewardsPunishmentInfo.setRewardsPunishment(params.getRewardsPunishment());
+            rewardsPunishmentInfo.setIntro(params.getIntro());
+            rewardsPunishmentInfo.setDate(params.getDate());
+            mapper.insertSelective(rewardsPunishmentInfo);
+            return ResponseEntity.ok();
+        } else {
+            return ResponseEntity.error(ResponseCode.FAIL_CODE, "没有该学生，无法添加奖惩信息");
         }
     }
 
