@@ -25,4 +25,13 @@
         </where>
     </select>
 
+    <select id="getCourseInfo"
+             resultType="com.student.manage.vo.grade.GradeCourseInfoVO">
+        SELECT
+        ci.id AS courseId,
+        ci.course_name
+        FROM
+        course_info ci
+    </select>
+
 </mapper>

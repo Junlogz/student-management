@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student.manage.mapper.GradeInfoCustomMapper">
+
+    <select id="getGradeInfoByStudentId"
+            parameterType="com.student.manage.params.grade.GetGradeInfoByIdParams" resultType="com.student.manage.vo.grade.GradeInfoVO">
+        SELECT
+            gi.id,
+            gi.student_id,
+            si.name AS studentName,
+            gi.course_id,
+            ci.course_name AS courseName,
+            gi.teacher_id,
+            ti.name AS teacherName,
+            gi.score
+        FROM
+            grade_info gi
+        LEFT JOIN student_info si ON gi.student_id = si.id
+        LEFT JOIN course_info ci ON gi.course_id = ci.id
+        LEFT JOIN teacher_info ti ON gi.teacher_id = ti.id
+        WHERE gi.student_id = #{studentId}
+    </select>
+
+    <select id="listGradeInfoPage"
+            parameterType="com.student.manage.params.grade.GetGradeInfoPageParams" resultType="com.student.manage.vo.grade.GetGradeInfoPageVO">
+        SELECT
+        gi.id,
+        gi.student_id,
+        si.name AS studentName,
+        gi.course_id,
+        ci.course_name AS courseName,
+        gi.teacher_id,
+        ti.name AS teacherName,
+        gi.score
+        FROM
+        grade_info gi
+        LEFT JOIN student_info si ON gi.student_id = si.id
+        LEFT JOIN course_info ci ON gi.course_id = ci.id
+        LEFT JOIN teacher_info ti ON gi.teacher_id = ti.id
+        <where>
+            <if test="studentName != null and studentName != ''">
+                AND si.name = #{studentName}
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+</mapper>

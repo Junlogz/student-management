@@ -4,7 +4,9 @@ import com.student.manage.po.generated.CourseInfo;
 import com.student.manage.po.generated.CourseInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CourseInfoMapper {
     long countByExample(CourseInfoExample example);
 

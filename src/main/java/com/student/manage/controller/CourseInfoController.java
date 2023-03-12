@@ -2,19 +2,13 @@ package com.student.manage.controller;
 
 
 import com.student.manage.entity.ResponseEntity;
-import com.student.manage.params.course.AddCourseInfoParams;
-import com.student.manage.params.course.DeleteCourseInfoByIdParams;
-import com.student.manage.params.course.GetCourseInfoByIdParams;
-import com.student.manage.params.course.GetCourseInfoPageParams;
-import com.student.manage.params.teacher.*;
+import com.student.manage.params.course.*;
 import com.student.manage.service.CourseInfoService;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.util.ResponseMessages;
 import com.student.manage.vo.admin.PageInfoVO;
 import com.student.manage.vo.course.CourseInfoVO;
 import com.student.manage.vo.course.GetCourseInfoPageVO;
-import com.student.manage.vo.teacher.GetTeacherInfoPageVO;
-import com.student.manage.vo.teacher.TeacherInfoVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -61,6 +55,13 @@ public class CourseInfoController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addCourseInfo(@RequestBody @Validated AddCourseInfoParams params) {
         return courseInfoService.addCourseInfo(params);
+    }
+
+    @ApiOperation(value = "课程信息-修改", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/update-course-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateCourseInfo(@RequestBody UpdateCourseInfoParams params) {
+        return courseInfoService.updateCourseInfo(params);
     }
 
     @ApiOperation(value = "课程信息-删除", code = ResponseCode.SUCCESS_CODE)

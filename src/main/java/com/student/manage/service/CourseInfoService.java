@@ -4,10 +4,10 @@ import com.github.pagehelper.PageInfo;
 import com.student.manage.entity.ResponseEntity;
 import com.student.manage.manage.CourseInfoManage;
 import com.student.manage.mapper.generated.CourseInfoMapper;
-import com.student.manage.params.course.AddCourseInfoParams;
-import com.student.manage.params.course.DeleteCourseInfoByIdParams;
-import com.student.manage.params.course.GetCourseInfoByIdParams;
-import com.student.manage.params.course.GetCourseInfoPageParams;
+import com.student.manage.params.admin.UpdateAdminInfoParams;
+import com.student.manage.params.course.*;
+import com.student.manage.po.generated.AdminInfo;
+import com.student.manage.po.generated.AdminInfoExample;
 import com.student.manage.po.generated.CourseInfo;
 import com.student.manage.po.generated.CourseInfoExample;
 import com.student.manage.util.ResponseCode;
@@ -67,6 +67,16 @@ public class CourseInfoService {
         CourseInfoVO courseInfoVO = new CourseInfoVO();
         BeanUtils.copyProperties(courseInfo, courseInfoVO);
         return ResponseEntity.ok(courseInfoVO);
+    }
+
+    public ResponseEntity updateCourseInfo(UpdateCourseInfoParams params) {
+        CourseInfoExample example = new CourseInfoExample();
+        example.createCriteria().andIdEqualTo(params.getId());
+
+        CourseInfo courseInfo = new CourseInfo();
+        BeanUtils.copyProperties(params,courseInfo);
+        courseInfoMapper.updateByExampleSelective(courseInfo, example);
+        return ResponseEntity.ok();
     }
 
 }

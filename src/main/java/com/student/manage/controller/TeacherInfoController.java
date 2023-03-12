@@ -58,8 +58,7 @@ public class TeacherInfoController {
     @PostMapping(value = "/update-teacher-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateTeacherInfo(@RequestBody UpdateTeacherInfoParams params) {
-//        return teacherInfoService.updateTeacherInfo(params);
-        return ResponseEntity.ok();
+        return teacherInfoService.updateTeacherInfo(params);
     }
 
     @ApiOperation(value = "教师登录", code = ResponseCode.SUCCESS_CODE)

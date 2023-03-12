@@ -3,6 +3,7 @@ package com.student.manage.controller;
 
 import com.student.manage.entity.ResponseEntity;
 import com.student.manage.params.admin.*;
+import com.student.manage.params.teacher.UpdateTeacherInfoParams;
 import com.student.manage.service.AdminInfoService;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.util.ResponseMessages;
@@ -56,6 +57,13 @@ public class AdminInfoController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> addAdminInfo(@RequestBody @Validated AddAdminInfoParams params) {
         return adminInfoService.addAdminInfo(params);
+    }
+
+    @ApiOperation(value = "管理员信息-修改", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/update-admin-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> updateAdminInfo(@RequestBody UpdateAdminInfoParams params) {
+        return adminInfoService.updateAdminInfo(params);
     }
 
     @ApiOperation(value = "管理员登录", code = ResponseCode.SUCCESS_CODE)

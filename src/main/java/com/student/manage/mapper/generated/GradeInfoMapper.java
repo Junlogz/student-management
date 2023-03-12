@@ -4,7 +4,9 @@ import com.student.manage.po.generated.GradeInfo;
 import com.student.manage.po.generated.GradeInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface GradeInfoMapper {
     long countByExample(GradeInfoExample example);
 

@@ -4,7 +4,9 @@ import com.student.manage.po.generated.TeacherInfo;
 import com.student.manage.po.generated.TeacherInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface TeacherInfoMapper {
     long countByExample(TeacherInfoExample example);
 

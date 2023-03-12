@@ -4,7 +4,9 @@ import com.student.manage.po.generated.AdminInfo;
 import com.student.manage.po.generated.AdminInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AdminInfoMapper {
     long countByExample(AdminInfoExample example);
 

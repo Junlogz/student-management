@@ -76,11 +76,18 @@ public class TeacherInfoService {
         } else {
             return ResponseEntity.error(ResponseCode.FAIL_CODE, "账号或密码错误");
         }
-
-
-
-
     }
+
+    public ResponseEntity updateTeacherInfo(UpdateTeacherInfoParams params) {
+        TeacherInfoExample example = new TeacherInfoExample();
+        example.createCriteria().andIdEqualTo(params.getId());
+
+        TeacherInfo teacherInfo = new TeacherInfo();
+        BeanUtils.copyProperties(params,teacherInfo);
+        teacherInfoMapper.updateByExampleSelective(teacherInfo, example);
+        return ResponseEntity.ok();
+    }
+
 
     public ResponseEntity deleteTeacherInfoById(DeleteTeacherInfoByIdParams params) {
         TeacherInfoExample example = new TeacherInfoExample();

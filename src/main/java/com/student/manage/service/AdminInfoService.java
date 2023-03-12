@@ -5,8 +5,11 @@ import com.student.manage.entity.ResponseEntity;
 import com.student.manage.manage.AdminInfoManage;
 import com.student.manage.mapper.generated.AdminInfoMapper;
 import com.student.manage.params.admin.*;
+import com.student.manage.params.teacher.UpdateTeacherInfoParams;
 import com.student.manage.po.generated.AdminInfo;
 import com.student.manage.po.generated.AdminInfoExample;
+import com.student.manage.po.generated.TeacherInfo;
+import com.student.manage.po.generated.TeacherInfoExample;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.util.ResponseMessages;
 import com.student.manage.vo.LoginInfoVO;
@@ -81,6 +84,16 @@ public class AdminInfoService {
         AdminInfoVO adminInfoVO = new AdminInfoVO();
         BeanUtils.copyProperties(adminInfo, adminInfoVO);
         return ResponseEntity.ok(adminInfoVO);
+    }
+
+    public ResponseEntity updateAdminInfo(UpdateAdminInfoParams params) {
+        AdminInfoExample example = new AdminInfoExample();
+        example.createCriteria().andIdEqualTo(params.getId());
+
+        AdminInfo adminInfo = new AdminInfo();
+        BeanUtils.copyProperties(params,adminInfo);
+        adminInfoMapper.updateByExampleSelective(adminInfo, example);
+        return ResponseEntity.ok();
     }
 
 }

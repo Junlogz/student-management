@@ -1,4 +1,4 @@
-package com.student.manage.vo.course;
+package com.student.manage.params.course;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -6,16 +6,13 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * @author: JunLog
  * @Description: *
- * Date: 2023/3/3 21:52
+ * Date: 2023/3/12 0:19
  */
-@ApiModel(value = "GetCourseInfoPageVO", description = "课程分页信息返回")
-public class GetCourseInfoPageVO {
+@ApiModel(value = "UpdateCourseInfoParams", description = "课程修改信息入参")
+public class UpdateCourseInfoParams {
 
     @ApiModelProperty(value = "id", example = "1")
     private Integer id;
-
-    @ApiModelProperty(value = "课程号", example = "1001")
-    private String courseNumber;
 
     @ApiModelProperty(value = "课程名", example = "数据结构")
     private String courseName;
@@ -38,14 +35,6 @@ public class GetCourseInfoPageVO {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getCourseNumber() {
-        return courseNumber;
-    }
-
-    public void setCourseNumber(String courseNumber) {
-        this.courseNumber = courseNumber;
     }
 
     public String getCourseName() {

@@ -2,12 +2,9 @@ package com.student.manage.mapper.generated;
 
 import com.student.manage.po.generated.RewardsPunishmentInfo;
 import com.student.manage.po.generated.RewardsPunishmentInfoExample;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
-@Repository
 public interface RewardsPunishmentInfoMapper {
     long countByExample(RewardsPunishmentInfoExample example);
 
