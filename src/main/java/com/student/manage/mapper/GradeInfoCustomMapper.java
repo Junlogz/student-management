@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 public interface GradeInfoCustomMapper {
 
-    GradeInfoVO getGradeInfoByStudentId(GetGradeInfoByIdParams params);
+    List<GradeInfoVO> getGradeInfoByStudentId(GetGradeInfoByIdParams params);
 
     List<GetGradeInfoPageVO> listGradeInfoPage(GetGradeInfoPageParams params);
 

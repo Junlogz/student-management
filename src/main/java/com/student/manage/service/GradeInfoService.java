@@ -5,22 +5,19 @@ import com.student.manage.entity.ResponseEntity;
 import com.student.manage.manage.GradeInfoManage;
 import com.student.manage.mapper.CourseInfoCustomMapper;
 import com.student.manage.mapper.GradeInfoCustomMapper;
+import com.student.manage.mapper.StudentInfoCustomMapper;
+import com.student.manage.mapper.TeacherInfoCustomMapper;
 import com.student.manage.mapper.generated.CourseInfoMapper;
 import com.student.manage.mapper.generated.GradeInfoMapper;
 import com.student.manage.params.admin.GetAdminInfoPageParams;
-import com.student.manage.params.grade.DeleteGradeInfoByIdParams;
-import com.student.manage.params.grade.GetGradeInfoByIdParams;
-import com.student.manage.params.grade.GetGradeInfoPageParams;
-import com.student.manage.params.grade.UpdateGradeInfoParams;
+import com.student.manage.params.grade.*;
 import com.student.manage.po.generated.CourseInfo;
 import com.student.manage.po.generated.GradeInfo;
 import com.student.manage.po.generated.GradeInfoExample;
 import com.student.manage.util.ResponseCode;
 import com.student.manage.vo.admin.GetAdminInfoPageVO;
 import com.student.manage.vo.admin.PageInfoVO;
-import com.student.manage.vo.grade.GetGradeInfoPageVO;
-import com.student.manage.vo.grade.GradeCourseInfoVO;
-import com.student.manage.vo.grade.GradeInfoVO;
+import com.student.manage.vo.grade.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +47,12 @@ public class GradeInfoService {
     @Autowired
     private CourseInfoCustomMapper courseInfoCustomMapper;
 
+    @Autowired
+    private StudentInfoCustomMapper studentInfoCustomMapper;
+
+    @Autowired
+    private TeacherInfoCustomMapper teacherInfoCustomMapper;
+
     public ResponseEntity<PageInfoVO<GetGradeInfoPageVO>> getGradeInfoPage(GetGradeInfoPageParams params) {
 
         PageInfo<GetGradeInfoPageVO> pageInfo = gradeInfoManage.listGradeInfoPage(params);
@@ -58,12 +61,10 @@ public class GradeInfoService {
     }
 
 
-    public ResponseEntity<GradeInfoVO> getGradeInfoByStudentId(GetGradeInfoByIdParams params) {
-        GradeInfoVO gradeInfos = gradeInfoCustomMapper.getGradeInfoByStudentId(params);
-        if (!ObjectUtils.isEmpty(gradeInfos)) {
-            GradeInfoVO gradeInfoVO = new GradeInfoVO();
-            BeanUtils.copyProperties(gradeInfos, gradeInfoVO);
-            return ResponseEntity.ok(gradeInfoVO);
+    public ResponseEntity<List<GradeInfoVO>> getGradeInfoByStudentId(GetGradeInfoByIdParams params) {
+        List<GradeInfoVO> gradeInfos = gradeInfoCustomMapper.getGradeInfoByStudentId(params);
+        if (!CollectionUtils.isEmpty(gradeInfos)) {
+            return ResponseEntity.ok(gradeInfos);
         } else {
             return ResponseEntity.error(ResponseCode.FAIL_CODE,"没有该id学生成绩信息");
         }
@@ -102,6 +103,28 @@ public class GradeInfoService {
         List<GradeCourseInfoVO> gradeCourseInfoVOS = new ArrayList<>();
         gradeCourseInfoVOS.addAll(courseInfo);
         return ResponseEntity.ok(gradeCourseInfoVOS);
+    }
+
+    public ResponseEntity<List<GradeStudentInfoVO>> getStudentInfo() {
+        List<GradeStudentInfoVO> studentInfo = studentInfoCustomMapper.getStudentInfo();
+
+        List<GradeStudentInfoVO> gradeStudentInfoVOS = new ArrayList<>();
+        gradeStudentInfoVOS.addAll(studentInfo);
+        return ResponseEntity.ok(gradeStudentInfoVOS);
+    }
+
+    public ResponseEntity<List<GradeTeacherInfoVO>> getTeacherInfo() {
+        List<GradeTeacherInfoVO> teacherInfo = teacherInfoCustomMapper.getTeacherInfo();
+
+        List<GradeTeacherInfoVO> gradeTeacherInfoVOS = new ArrayList<>();
+        gradeTeacherInfoVOS.addAll(teacherInfo);
+        return ResponseEntity.ok(gradeTeacherInfoVOS);
+    }
+
+    public ResponseEntity addGradeInfo(AddGradeInfoParams params) {
+        GradeInfo gradeInfo = new GradeInfo();
+        BeanUtils.copyProperties(params, gradeInfo);
+        return ResponseEntity.ok(gradeInfoMapper.insertSelective(gradeInfo));
     }
 
 }

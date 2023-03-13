@@ -5,10 +5,7 @@ import com.student.manage.entity.ResponseEntity;
 import com.student.manage.params.admin.UpdateAdminInfoParams;
 import com.student.manage.params.course.GetCourseInfoPageParams;
 import com.student.manage.params.course.UpdateCourseInfoParams;
-import com.student.manage.params.grade.DeleteGradeInfoByIdParams;
-import com.student.manage.params.grade.GetGradeInfoByIdParams;
-import com.student.manage.params.grade.GetGradeInfoPageParams;
-import com.student.manage.params.grade.UpdateGradeInfoParams;
+import com.student.manage.params.grade.*;
 import com.student.manage.params.teacher.DeleteTeacherInfoByIdParams;
 import com.student.manage.params.teacher.GetTeacherInfoByIdParams;
 import com.student.manage.service.GradeInfoService;
@@ -17,9 +14,7 @@ import com.student.manage.util.ResponseMessages;
 import com.student.manage.vo.admin.PageInfoVO;
 import com.student.manage.vo.course.CourseInfoVO;
 import com.student.manage.vo.course.GetCourseInfoPageVO;
-import com.student.manage.vo.grade.GetGradeInfoPageVO;
-import com.student.manage.vo.grade.GradeCourseInfoVO;
-import com.student.manage.vo.grade.GradeInfoVO;
+import com.student.manage.vo.grade.*;
 import com.student.manage.vo.teacher.TeacherInfoVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -55,7 +50,7 @@ public class GradeInfoController {
     @ApiOperation(value = "成绩信息-根据学生id查询", code = ResponseCode.SUCCESS_CODE)
     @PostMapping(value = "/get-grade-info-by-student-id/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<GradeInfoVO> getGradeInfoByStudentId(@RequestBody GetGradeInfoByIdParams params) {
+    public ResponseEntity<List<GradeInfoVO>> getGradeInfoByStudentId(@RequestBody GetGradeInfoByIdParams params) {
         return gradeInfoService.getGradeInfoByStudentId(params);
     }
 
@@ -80,6 +75,13 @@ public class GradeInfoController {
         return gradeInfoService.deleteGradeInfoById(params);
     }
 
+    @ApiOperation(value = "成绩信息-添加", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/add-grade-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> addGradeInfo(@RequestBody AddGradeInfoParams params) {
+        return gradeInfoService.addGradeInfo(params);
+    }
+
     @ApiOperation(value = "成绩信息-添加-课程下拉框查询", code = ResponseCode.SUCCESS_CODE)
     @PostMapping(value = "/get-course-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -88,10 +90,17 @@ public class GradeInfoController {
     }
 
     @ApiOperation(value = "成绩信息-添加-学生下拉框查询", code = ResponseCode.SUCCESS_CODE)
-    @PostMapping(value = "/get-course-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(value = "/get-student-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<GradeStudentInfoVO>> getStudentInfo() {
-        return gradeInfoService.getCourseInfo();
+        return gradeInfoService.getStudentInfo();
+    }
+
+    @ApiOperation(value = "成绩信息-添加-教师下拉框查询", code = ResponseCode.SUCCESS_CODE)
+    @PostMapping(value = "/get-teacher-info/v1", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<GradeTeacherInfoVO>> getTeacherInfo() {
+        return gradeInfoService.getTeacherInfo();
     }
 
 
